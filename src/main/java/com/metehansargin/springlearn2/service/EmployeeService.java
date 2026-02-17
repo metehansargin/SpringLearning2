@@ -1,0 +1,36 @@
+package com.metehansargin.springlearn2.service;
+
+import com.metehansargin.springlearn2.dto.dtoDepartment;
+import com.metehansargin.springlearn2.dto.dtoEmployee;
+import com.metehansargin.springlearn2.model.Department;
+import com.metehansargin.springlearn2.model.Employee;
+import com.metehansargin.springlearn2.repository.EmployeeRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class EmployeeService {
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
+    public dtoEmployee getById(Long id){
+        dtoEmployee dtoEmployee=new dtoEmployee();
+        dtoDepartment dtoDepartment=new dtoDepartment();
+
+        Optional<Employee> optionalEmployee=employeeRepository.findById(id);
+        if(optionalEmployee.isEmpty()){
+            return  null;
+        }
+        Employee employee=optionalEmployee.get();
+        Department department=optionalEmployee.get().getDepartment();
+        BeanUtils.copyProperties(employee,dtoEmployee);
+        BeanUtils.copyProperties(department,dtoDepartment);
+        return dtoEmployee;
+    }
+
+}
