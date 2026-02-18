@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class dtoEmployee {
     private Long id;
+
     private String name;
+
     private dtoDepartment department;
 }
