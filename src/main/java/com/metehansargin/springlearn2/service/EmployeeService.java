@@ -30,6 +30,7 @@ public class EmployeeService {
         Department department=optionalEmployee.get().getDepartment();
         BeanUtils.copyProperties(employee,dtoEmployee);
         BeanUtils.copyProperties(department,dtoDepartment);
+        dtoEmployee.setDepartment(dtoDepartment);//burada aslında kullanıcağımız olan department id yide maplemiş olduk
         return dtoEmployee;
     }
 
