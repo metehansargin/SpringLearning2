@@ -1,5 +1,6 @@
 package com.metehansargin.springlearn2.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
