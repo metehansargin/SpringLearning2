@@ -58,6 +58,27 @@ public class EmployeeService {
         return baseMapper.toDto(saved, dtoEmployee.class);
 
     }
+    public dtoEmployee update(Long id,dtoEmployee dto){
+        Employee employee=employeeRepository.findById(id)
+                .orElseThrow(()->new BaseException(
+                        new ErrorMesage(MessageType.NO_RECORD_EXIST,dto.getDepartment().getId().toString())));
+
+        employee.setName(dto.getName());
+        baseMapper.update(dto,employee);
+
+        Employee saved=employeeRepository.save(employee);
+
+        return baseMapper.toDto(saved, dtoEmployee.class);
+
+    }
+    public void delete(Long id){
+
+        Employee employee=employeeRepository.findById(id)
+                .orElseThrow(()->new BaseException(
+                        new ErrorMesage(MessageType.NO_RECORD_EXIST,id.toString())));
+
+        employeeRepository.delete(employee);
+    }
 
 
 
