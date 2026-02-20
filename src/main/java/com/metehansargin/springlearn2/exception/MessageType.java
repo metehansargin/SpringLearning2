@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum MessageType {
     NO_RECORD_EXIST("1001","Kayit Bulunamadi"),
-    GENERAL_EXCEPTION("9999","Genel Bir Hata Olustu");
+    GENERAL_EXCEPTION("9999","Genel Bir Hata Olustu"),
+    MAPPER_EXIST("8888","Mapper Hatasi Olustu");
 
     private String code;
     private String message;

@@ -3,10 +3,7 @@ package com.metehansargin.springlearn2.controller;
 import com.metehansargin.springlearn2.dto.dtoEmployee;
 import com.metehansargin.springlearn2.model.RootEntity;
 import com.metehansargin.springlearn2.service.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -19,5 +16,9 @@ public class EmployeeController extends RootBaseController {
     @GetMapping("/get/{id}")
     public RootEntity<dtoEmployee> getById(@PathVariable(value = "id") Long id){
         return ok(employeeService.getById(id));
+    }
+    @PostMapping("/save")
+    public RootEntity<dtoEmployee> save(@RequestBody dtoEmployee dtoEmployee){
+        return ok(employeeService.save(dtoEmployee));
     }
 }
